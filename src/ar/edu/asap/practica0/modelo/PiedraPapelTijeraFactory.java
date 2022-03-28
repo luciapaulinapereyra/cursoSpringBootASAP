@@ -1,4 +1,5 @@
 package ar.edu.asap.practica0.modelo;
+import java.util.ArrayList;
 import java.util.List;
 public abstract class PiedraPapelTijeraFactory {
 	 public static final int PIEDRA=1;
@@ -11,5 +12,47 @@ public abstract class PiedraPapelTijeraFactory {
 	 
 	 protected String nombre;
 	 protected int numero;
+	 
+	 public PiedraPapelTijeraFactory(String nombre, int numero) {
+		 super();
+		 this.nombre=nombre;
+		 this.numero=numero;
+	 }
+
+	public String getDescripcionResultado() {
+		return descripcionResultado;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public abstract boolean isMe(int pNUM);
+	public abstract int comparar(PiedraPapelTijeraFactory pPPTFact);
+
+	 
+	public static PiedraPapelTijeraFactory getInstance(int pNUM) {
+        elementos = new ArrayList<PiedraPapelTijeraFactory>();
+        elementos.add(new Piedra());
+        elementos.add(new Papel());
+        elementos.add(new Tijera());
+        
+        for (PiedraPapelTijeraFactory piedraPapelTijeraFactory : elementos) {
+			if(piedraPapelTijeraFactory.isMe(pNUM)) {
+				return piedraPapelTijeraFactory;
+			}
+		}
+		return null;
+	}
+
+	 
 	 
 }
