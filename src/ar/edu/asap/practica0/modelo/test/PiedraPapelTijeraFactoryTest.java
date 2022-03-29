@@ -6,16 +6,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.asap.practica0.modelo.Lagarto;
 import ar.edu.asap.practica0.modelo.Papel;
 import ar.edu.asap.practica0.modelo.Piedra;
 import ar.edu.asap.practica0.modelo.PiedraPapelTijeraFactory;
+import ar.edu.asap.practica0.modelo.Spock;
 import ar.edu.asap.practica0.modelo.Tijera;
 
 class PiedraPapelTijeraFactoryTest {
 	Piedra piedra;
 	Papel papel;
 	Tijera tijera;
-	
+	Lagarto lagarto;
+	Spock spock;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -23,6 +26,9 @@ class PiedraPapelTijeraFactoryTest {
 		piedra = new Piedra();
 		papel = new Papel();
 		tijera = new Tijera();
+		lagarto = new Lagarto();
+		spock = new Spock();
+		
 	}
 
 	@AfterEach
@@ -40,8 +46,18 @@ class PiedraPapelTijeraFactoryTest {
 	}
 	
 	@Test
+	void testPiedraGanaALagarto_comparar() {
+		assertEquals(1, piedra.comparar(lagarto));
+	}
+	
+	@Test
 	void testPiedraPierdeConPapel_comparar() {
 		assertEquals(-1, piedra.comparar(papel));
+	}
+	
+	@Test
+	void testPiedraPierdeConSpock_comparar() {
+		assertEquals(-1, piedra.comparar(spock));
 	}
 	
 	@Test
@@ -49,20 +65,32 @@ class PiedraPapelTijeraFactoryTest {
 		assertEquals(0, piedra.comparar(piedra));
 	}
 	
+
+	//descripcion resultados
 	
-	
+
 	@Test
 	void testPiedraGanaATijera_comparar_DescripcionResultado() {
 		int result = piedra.comparar(tijera);
 		assertEquals("piedra le gana a tijera" , piedra.getDescripcionResultado());
 	}
 	
+	@Test
+	void testPiedraGanaALagarto_comparar_DescripcionResultado() {
+		int result = piedra.comparar(lagarto);
+		assertEquals("piedra le gana a lagarto" , piedra.getDescripcionResultado());
+	}
 
-	
 	@Test
 	void testPiedraPierdeConPapel_comparar_DescripcionResultado() {
 		int result = piedra.comparar(papel);
 		assertEquals("piedra pierde con papel" , piedra.getDescripcionResultado());
+	}
+	
+	@Test
+	void testPiedraPierdeConSpock_comparar_DescripcionResultado() {
+		int result = piedra.comparar(spock);
+		assertEquals("piedra pierde con spock" , piedra.getDescripcionResultado());
 	}
 	
 	@Test
@@ -72,6 +100,8 @@ class PiedraPapelTijeraFactoryTest {
 	}
 	
 	
+	
+	//instancia
 	@Test
 	void testGetInstancePiedra() {
 		assertEquals("piedra",PiedraPapelTijeraFactory.getInstance(PiedraPapelTijeraFactory.PIEDRA).getNombre());

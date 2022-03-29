@@ -1,41 +1,49 @@
-
 package ar.edu.asap.practica0.modelo;
 
-public class Piedra extends PiedraPapelTijeraFactory{
-	 
-	public Piedra() {
-		this("piedra", PiedraPapelTijeraFactory.PIEDRA);
+public class Lagarto extends PiedraPapelTijeraFactory {
+
+	public Lagarto() {
+		this("lagarto", PiedraPapelTijeraFactory.LAGARTO);
 	}
 	
-	public Piedra (String nombre, int numero) {
+	public Lagarto (String nombre, int numero) {
 		super(nombre,numero);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public boolean isMe(int pNUM) {
+		return pNUM == PiedraPapelTijeraFactory.LAGARTO;
 	}
 
 	@Override
 	public int comparar(PiedraPapelTijeraFactory pPPTFact) {
 		int result =0;
 		switch(pPPTFact.getNumero()) {
-		 
-		//gana
-		case PiedraPapelTijeraFactory.TIJERA:
+		  //gana
+		case PiedraPapelTijeraFactory.SPOCK:
 			result=1;
 			this.descripcionResultado= nombre + " le gana a " +pPPTFact.getNombre();
 			break;
-			
-		case PiedraPapelTijeraFactory.LAGARTO:
+		case PiedraPapelTijeraFactory.PAPEL:
 			result=1;
 			this.descripcionResultado= nombre + " le gana a " +pPPTFact.getNombre();
 			break;
-			
 			
 			//pierde
-		case PiedraPapelTijeraFactory.PAPEL:
+		case PiedraPapelTijeraFactory.PIEDRA:
 			result=-1;
 			this.descripcionResultado= nombre + " pierde con " +pPPTFact.getNombre();
 			break;
 			
-			//pierde
-		case PiedraPapelTijeraFactory.SPOCK:
+		case PiedraPapelTijeraFactory.TIJERA:
 			result=-1;
 			this.descripcionResultado= nombre + " pierde con " +pPPTFact.getNombre();
 			break;
@@ -46,12 +54,6 @@ public class Piedra extends PiedraPapelTijeraFactory{
 			 break;
 		} 
 		return result;
-	}
-
-	@Override
-	public boolean isMe(int pNUM) {
-		// TODO Auto-generated method stub
-		return pNUM == PiedraPapelTijeraFactory.PIEDRA;
 	}
 
 }
