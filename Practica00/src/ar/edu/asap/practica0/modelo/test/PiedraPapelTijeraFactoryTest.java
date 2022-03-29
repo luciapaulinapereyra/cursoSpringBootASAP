@@ -37,6 +37,8 @@ class PiedraPapelTijeraFactoryTest {
 		piedra = null;
 		papel = null;
 		tijera = null;
+		lagarto = null;
+		spock = null;
 	}
 	
 	//PIEDRA
