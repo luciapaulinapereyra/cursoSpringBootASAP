@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.domain.modelo.Alumno;
@@ -64,6 +66,9 @@ public class AlumnoDAO implements DAO {
 
 	@Override
 	public List<Model> leer(Model pModel) throws SQLException {
+		 
+		List<Model> alumnosModel  = new ArrayList<Model>();
+		
 		ResultSet res;
 		StringBuilder sql = new StringBuilder("SELECT*FROM alumnos WHERE ALU_ID=?");
 		Alumno aluMod = (Alumno) pModel;
@@ -76,14 +81,20 @@ public class AlumnoDAO implements DAO {
 		   aluMod.setApellido(res.getString("ALU_APELLIDO"));
 		   aluMod.setEmail(res.getString("ALU_EMAIL"));
 		   aluMod.setEstudios(res.getString("ALU_CONOCIMIENTOS"));
+		   
+		   alumnosModel.add(aluMod);
+
 		} else {
 			System.out.println("no existe esa persona");
 		}
 
+      for (int i=0;i<alumnosModel.size();i++) {
+			
+			System.out.println(alumnosModel.get(i));
+		}
 		
-		
-		System.out.println(aluMod);
-		return null;
+
+		return alumnosModel;
 	}
 
 }
