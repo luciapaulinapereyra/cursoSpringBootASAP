@@ -1,4 +1,4 @@
-package ar.edu.asap.practica0.modelo;
+package es.edu.alter.practica0.modelo;
 
 import java.util.Date;
 
@@ -20,6 +20,7 @@ public class Autoria {
 		this.fecha = fecha;
 	}
 	public int getCantidadJugadas() {
+		
 		return cantidadJugadas;
 	}
 	public void setCantidadJugadas(int cantidadJugadas) {
@@ -27,6 +28,6 @@ public class Autoria {
 	}
    
 	public void contarDespuesDeLaJugada() {
-		cantidadJugadas++;
+		this.cantidadJugadas++;
 	}
 }
